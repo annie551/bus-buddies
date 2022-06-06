@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image,  StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import bcabuslogo from './assets/bcabuslogo.png'; 
 // import { AwesomeButton } from "react-awesome-button";
 // import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
@@ -14,8 +17,8 @@ export default function App() {
 
       <TouchableOpacity
         onPress={() => alert('Hello, world!')}
-        style={{ backgroundColor: 'blue' }}>
-        <Text style={{ fontSize: 20, color: '#fff' }}>Pick a photo</Text>
+        style={styles.playButton}>
+        <Text style={styles.playButtonText}>Pick a photo</Text>
       </TouchableOpacity>
 
       <StatusBar style="auto" />
@@ -42,10 +45,23 @@ const styles = StyleSheet.create({
   logo: {
     width: 305,
     height: 305,
-    marginBottom: 10,
+    marginBottom: 0,
   },
   title: {
-  color: '#ffffff', 
-  fontSize: 40} 
+    color: '#ffffff', 
+    fontSize: 40,
+    marginBottom: 15,
+  }, 
+  playButton: {
+    backgroundColor: "blue",
+    padding: 20,
+    borderRadius: 25,
+
+  },
+  playButtonText: { 
+    fontSize: 20,
+   color: '#fff',
+  },
+  
 });
 
