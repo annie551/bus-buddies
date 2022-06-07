@@ -8,23 +8,53 @@ import bcabuslogo from './assets/bcabuslogo.png';
 // import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 
 
+import styles from "./style"
 
-export default function App() {
+function HomeScreen( {navigation} ) {
   return (
     <View style={styles.container}>
       <Image source={bcabuslogo} style={styles.logo} /> 
       <Text style={styles.title} >Bus Buddies!</Text>
 
-      <TouchableOpacity
-        onPress={() => alert('Hello, world!')}
+      <Button
+        onPress={() => navigation.navigate('SecondScreen')}
         style={styles.playButton}>
         <Text style={styles.playButtonText}>Pick a photo</Text>
-      </TouchableOpacity>
+      </Button>
 
       <StatusBar style="auto" />
     </View>
   );
 }
+
+
+function SecondScreen() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title} >LOL!</Text>
+    </View>
+  );
+}
+
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+
+        <Stack.Screen name="Second" component={SecondScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
+
+
+
 
 /** function Button() {
   return (
@@ -34,34 +64,4 @@ export default function App() {
   );
 }
 */
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#125e50',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 305,
-    height: 305,
-    marginBottom: 0,
-  },
-  title: {
-    color: '#ffffff', 
-    fontSize: 40,
-    marginBottom: 15,
-  }, 
-  playButton: {
-    backgroundColor: "blue",
-    padding: 20,
-    borderRadius: 25,
-
-  },
-  playButtonText: { 
-    fontSize: 20,
-   color: '#fff',
-  },
-  
-});
 
