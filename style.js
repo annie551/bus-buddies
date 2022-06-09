@@ -18,14 +18,15 @@ export default StyleSheet.create({
           marginBottom: 15,
         }, 
         playButton: {
-          backgroundColor: "blue",
+          backgroundColor: "light blue",
           padding: 20,
           borderRadius: 25,
       
         },
         playButtonText: { 
-          fontSize: 20,
-         color: '#fff',
+         fontSize: 20,
+         color: 'light blue',
+         backgroundColor: "white",
         },      
       
 })
