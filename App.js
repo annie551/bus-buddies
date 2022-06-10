@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image,  StyleSheet, TouchableOpacity, Text, View, Button } from 'react-native';
+import { Image,  StyleSheet, TouchableOpacity, Alert, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
+import React, { Component } from 'react';
 
-import * as SMS from 'expo-sms';
 
 
 
@@ -41,6 +42,7 @@ function SecondScreen() {
 
 
 function SendNotifScreen() {
+  let r = RouteTable()
   return (
     <View style={styles.container}>
       <Button
@@ -48,6 +50,7 @@ function SendNotifScreen() {
         onPress={result}
       />
     </View>
+    r
   )
 }
 

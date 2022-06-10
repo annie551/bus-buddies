@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image,  StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { Image,  StyleSheet, TouchableOpacity, Alert, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-// import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
+import React, { Component } from 'react';
+
+
 
 
 import bcabuslogo from './assets/bcabuslogo.png'; 
@@ -12,88 +15,105 @@ import bcabuslogo from './assets/bcabuslogo.png';
 
 import styles from "./style"
 
-
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image source={bcabuslogo} style={styles.logo} /> 
       <Text style={styles.title} >Bus Buddies!</Text>
-
-      <TouchableOpacity
-        onPress={() => alert('Hello, world!')}
-        style={styles.playButton}>
-        <Text style={styles.playButtonText}>Pick a photo</Text>
-      </TouchableOpacity>
-
+      <Button
+        title="SendNotifScreen"
+        onPress={() => navigation.navigate('SendNotifScreen')}
+        style={styles.playButton}
+      />
       <StatusBar style="auto" />
+
     </View>
   );
 }
 
-function SettingsScreen() {
+
+function SecondScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
+    <View style={styles.container}>
+      <Text style={styles.title} >LOL!</Text>
     </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
+class ExampleFour extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
+      tableData: [
+        ['1', '2', '3', '4'],
+        ['a', 'b', 'c', 'd'],
+        ['1', '2', '3', '4'],
+        ['a', 'b', 'c', 'd']
+      ]
+    }
+  }
 
-function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+  _alertIndex(index) {
+    Alert.alert(`This is row ${index + 1}`);
+  }
+
+  render() {
+    const state = this.state;
+    const element = (data, index) => (
+      <TouchableOpacity onPress={() => this._alertIndex(index)}>
+        <View style={styles.btn}>
+          <Text style={styles.btnText}>button</Text>
+        </View>
+      </TouchableOpacity>
+    );
+
+    return (
+      <View style={styles.container}>
+        <Table borderStyle={{borderColor: 'transparent'}}>
+          <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
+          {
+            state.tableData.map((rowData, index) => (
+              <TableWrapper key={index} style={styles.row}>
+
+{
+                  rowData.map((cellData, cellIndex) => (
+                    <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text}/>
+                  ))
+                }
+              </TableWrapper>
+            ))
+          }
+        </Table>
+      </View>
+    )
+  }
 }
 
 
 
-/*
+function SendNotifScreen() {
+  return (
+    <View style={styles.container}>
+      <Button
+        title="Sending Bus Notif"
+        onPress={result}
+      />
+    </View>
+  )
+}
+
 const Stack = createNativeStackNavigator();
 
-
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={({ navigation }) => ({
-          title: 'Bus Buddies Home',
-          headerLeft: () => (
-            <DrawerButton onPress={() => navigation.toggleDrawer()} />
-          ),
-        })}/>
-      <Stack.Screen name="Second" component={SecondScreen}
-        options={({ navigation }) => ({
-          title: 'Bus Buddies Second',
-          headerLeft: () => (
-            <DrawerButton onPress={() => navigation.toggleDrawer()} />
-          ),
-        })}/>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="SendNotifScreen" component={SendNotifScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-*/
 
 export default App;
-
-
-
-
-/** function Button() {
-  return (
-    <AwesomeButton cssModule={AwesomeButtonStyles} type="primary">
-      Button
-    </AwesomeButton>
-  );
-}
-*/
-
