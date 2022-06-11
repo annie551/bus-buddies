@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import * as SMS from 'expo-sms';
 
+const API_KEY = "p7xv2xrch8yw";
 
 
 import bcabuslogo from './assets/bcabuslogo.png'; 
@@ -29,6 +30,8 @@ function HomeScreen({ navigation }) {
     </View>
   );
 }
+
+// HELLO
 
 
 function SecondScreen() {
