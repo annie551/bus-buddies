@@ -53,7 +53,6 @@ function SendNotifScreen() {
         onPress={result}
       />
     </View>
-    r
   )
 }
 
