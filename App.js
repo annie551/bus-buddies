@@ -1,11 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
+import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert } from 'react-native';
 import { Image, StyleSheet, TouchableOpacity, Text, View, Button, Alert, Switch, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, Component } from 'react';
 import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 
+import React, { Component, Fragment, FC, useState } from 'react';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
+
+
 
 
 import bcabuslogo from './assets/bcabuslogo.png';
@@ -30,11 +34,93 @@ function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('SendNotifScreen')}
         style={styles.playButton}
       />
+
+      <Button
+        title="Get started"
+        onPress={() => navigation.navigate('SetupScreen')}
+        style={styles.playButton}
+      />
+
       <StatusBar style="auto" />
 
     </View>
   );
 }
+
+function SetupScreen({navigation}) {
+  // const [text, onChangeText] = React.useState("Your town...");
+  const [town, setTown] = React.useState(null);
+
+  const inputHandler = (enteredText) => {
+    setTown(enteredText);
+    if (enteredText == "River Vale") {
+      navigation.navigate('SetStopScreen');
+    }
+  };
+
+  return (
+    <View style = {styles.container}>
+      <Text>Which town are you from?</Text>
+      <TextInput
+        //style={styles.input}
+        onChangeText={inputHandler}
+        value={town}
+        placeholder="Your town..."
+        keyboardType="text"
+      />      
+    </View>
+
+    
+  );
+}
+
+function SummaryScreen({navigation}) {
+  // const [text, onChangeText] = React.useState("Your town...");
+  
+  return (
+    <View style = {styles.container}>
+      <Text>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
+         
+      <Button
+        title="SendNotifScreen"
+        onPress={() => navigation.navigate('SendNotifScreen')}
+        style={styles.playButton}
+      />
+    </View>
+
+    
+  );
+}
+
+function SetStopScreen({navigation}) {
+  const [stop, setStop] = React.useState(null);
+
+  const inputHandler = (enteredText) => {
+    setStop(enteredText);
+    if (enteredText == "Cleveland & Rockland") {
+      navigation.navigate('SummaryScreen');
+    }
+  };
+
+  return (
+    <View style = {styles.container}>
+      <Text>Which stop do you wait at?</Text>
+      <TextInput
+        //style={styles.input}
+        onChangeText={inputHandler}
+        value={stop}
+        placeholder="Your stop..."
+        keyboardType="text"
+      />      
+    </View>
+
+    
+  );
+ 
+
+ 
+}
+
 
 
 function SecondScreen() {
@@ -168,7 +254,6 @@ class SendNotifScreen extends Component {
         value={this.state.switchValue}
 
       />
-
     );
 
 
@@ -214,6 +299,10 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SendNotifScreen" component={SendNotifScreen} />
+        <Stack.Screen name="SetupScreen" component={SetupScreen} />
+        <Stack.Screen name="SetStopScreen" component={SetStopScreen} />
+        <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
