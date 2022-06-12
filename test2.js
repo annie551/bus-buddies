@@ -3,9 +3,6 @@ import { Image,  StyleSheet, TouchableOpacity, Text, View, Button } from 'react-
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import * as SMS from 'expo-sms';
-
-
 
 import bcabuslogo from './assets/bcabuslogo.png'; 
 // import { AwesomeButton } from "react-awesome-button";
