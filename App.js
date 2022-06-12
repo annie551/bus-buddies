@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, TouchableOpacity, Text, View, Button, Alert } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, Text, View, Button, Alert, Switch, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useState, Component } from 'react';
+import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 
-
-import React, { Component } from 'react';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 
 
@@ -15,11 +15,16 @@ import bcabuslogo from './assets/bcabuslogo.png';
 
 import styles from "./style"
 
+// export default props => {
+//   let [fontsLoaded] = useFonts({
+//     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
+//   });
+
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Image source={bcabuslogo} style={styles.logo} />
-      <Text style={styles.title} >Bus Buddies!</Text>
+      <Text style={styles.homeScreenTitle} >Bus Buddies!</Text>
       <Button
         title="SendNotifScreen"
         onPress={() => navigation.navigate('SendNotifScreen')}
@@ -40,81 +45,170 @@ function SecondScreen() {
   );
 }
 
+function tSwitch() {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  return (
+    <ScrollView style={styles.container}>
+      <Switch
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+
+    </ScrollView>
+  )
+
+}
+
+function curValue(val) {
+  /* if (val) {
+    System.out.println("EXCUSE U LOOK HERE");
+    return false;
+  }
+  return true;
+  */
+  //val ? false : true;
+  return !val;
+}
 
 function SendNotifScreen1() {
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Button
         title="Sending Bus Notif"
       //onPress={result}
       />
-    </View>
+      <Switch
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+
+    </ScrollView>
   )
 }
 
 class SendNotifScreen extends Component {
+
   constructor(props) {
     super(props);
+
     this.state = {
-      tableHead: ['Head', 'Head2', 'Head3', 'Head4'],
+      tableHead: ['Stop', 'Estimated Time', 'Arrived'],
       tableData: [
-        ['1', '2', 'passed', '4'],
-        ['a', 'b', 'c', 'd'],
-        ['1', '2', '3', '4'],
-        ['a', 'b', 'c', 'd']
-      ]
+        ['Kinderkamack Rd & Ralph Ave, HD', '6:32', ''],
+        ['Prospect St & Ruckman Rd, RV', '6:35', ''],
+        ['Rivervale Rd & Woodside Ave, RV', '6:40', ''],
+        ['Winding Way & Dorchester Dr, RV', '6:41', ''],
+        ['Rivervale Rd & Barr Ct, RV', '6:44', ''],
+        ['Rivervale Rd & Wittich Terr, RV', '6:44', ''],
+        ['Rivervale Rd & Thurnau Dr, RV', '6:45', ''],
+        ['Rivervale Rd & Woodland Ct, RV', '6:45', ''],
+        ['Piermont Ave & Holiday Farms, RV', '6:47', ''],
+        ['Cedar La & E. Liberty Ave, RV', '6:48', ''],
+        ['Cedar La & Dearest Ave, RV', '6:49', ''],
+        ['Cleveland Ave & Nelson Cr, RV', '6:50', ''],
+        ['Cleveland Ave & Rockland, RV', '6:50', ''],
+        ['Cleveland Ave & May St, RV', '6:52', ''],
+        ['Rockland & Hudson Ave, RV', '6:52', ''],
+        ['Westwood Ave & Oak Ave, RV', '6:55', ''],
+        ['Westwood Ave & Rivervale, RV', '6:57', ''],
+        ['Rivervale Rd & Tiffany, RV', '6:58', '']
+      ],
+      hasArrived: ['Arrived', 'Pending']
     }
   }
+
 
   _alertIndex(index) {
     Alert.alert(`This is row ${index + 1}`);
   }
 
+
+
   render() {
     const state = this.state;
+
+    /*  const element = (data, index) => (
+       <TouchableOpacity onPress={() => this._alertIndex(index)}>
+         <View style={styles.btn}>
+           <Text style={styles.btnText}>button</Text>
+         </View>
+       </TouchableOpacity>
+     );
+     */
+
     const element = (data, index) => (
       <TouchableOpacity onPress={() => this._alertIndex(index)}>
-        <View style={styles1.btn}>
-          <Text style={styles1.btnText}>button</Text>
+        <View style={styles.btn}>
+          <Text style={styles.btnText}>button</Text>
         </View>
       </TouchableOpacity>
     );
 
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+    const element1 = () => (
+      <Switch
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
+        thumbColor={'#f5dd4b'}
+        //thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={(value) => console.log(value)}
+        value = { this.state.switchValue }
+
+      />
+
+    );
+
+
+
     return (
-      <View style={styles1.container}>
+
+      <ScrollView style={styles.container1} >
+        <Text style={{ fontFamily: 'Quicksand_300Light', fontSize: 40 }}>My Grey Knight
+        </Text>
         <Table borderStyle={{ borderColor: 'transparent' }}>
-          <Row data={state.tableHead} style={styles1.head} textStyle={styles1.text} />
+          <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
           {
             state.tableData.map((rowData, index) => (
-              <TableWrapper key={index} style={styles1.row}>
+              <TableWrapper key={index} style={styles.row}>
                 {
                   rowData.map((cellData, cellIndex) => (
-                    <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text} />
+                    //<Cell key={cellIndex} data={cellIndex === 2 ? element(cellData, index) : cellData} textStyle={styles.text} />
+                    <Cell key={cellIndex} data={cellIndex === 2 ? element1(true) : cellData} textStyle={styles.text} />
                   ))
                 }
               </TableWrapper>
             ))
           }
         </Table>
-      </View>
+
+      </ScrollView>
     )
   }
 }
-
-const styles1 = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#125e50' },
-  head: { height: 40, backgroundColor: '#FFC300' },
-  text: { margin: 6 },
-  row: { flexDirection: 'row', backgroundColor: '#FFF1C1' },
-  btn: { width: 58, height: 18, backgroundColor: '#78B7BB', borderRadius: 2 },
-  btnText: { textAlign: 'center', color: '#fff' }
-});
 
 
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+
+  // let [fontsLoaded] = useFonts({
+  //   Inter_900Black,
+  // });
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
