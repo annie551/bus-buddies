@@ -165,7 +165,7 @@ class SendNotifScreen extends Component {
         //thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
         onValueChange={(value) => console.log(value)}
-        value = { this.state.switchValue }
+        value={this.state.switchValue}
 
       />
 
