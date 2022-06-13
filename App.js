@@ -1,12 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert } from 'react-native';
-import { Image, StyleSheet, TouchableOpacity, Text, View, Button, Alert, Switch, ScrollView } from 'react-native';
+import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState, Component } from 'react';
+import React, { useState, Component, Fragment, FC } from 'react';
 import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
-
-import React, { Component, Fragment, FC, useState } from 'react';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 
 
@@ -114,10 +111,7 @@ function SetStopScreen({navigation}) {
       />      
     </View>
 
-    
   );
- 
-
  
 }
 
@@ -251,7 +245,7 @@ class SendNotifScreen extends Component {
         //thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
         onValueChange={(value) => console.log(value)}
-        value = { this.state.switchValue }
+        value={this.state.switchValue}
 
       />
     );
