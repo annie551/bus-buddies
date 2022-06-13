@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable } from 'react-native';
+import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, Component, Fragment, FC } from 'react';
@@ -12,6 +12,8 @@ import AwesomeButton from "react-native-really-awesome-button";
 
 
 import bcabuslogo from './assets/bcabuslogo.png';
+import skyline from './assets/skyline.png';
+import buslogo from './assets/buslogo.png';
 // import { AwesomeButton } from "react-awesome-button";
 // import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 
@@ -23,10 +25,13 @@ import styles from "./style"
 //     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
 //   });
 
+
+//      <Image source={bcabuslogo} style={styles.logo} />
+
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={bcabuslogo} style={styles.logo} />
+      <Image source={buslogo} style={styles.logo} />
       <Text style={styles.homeScreenTitle} >Bus Buddies!</Text>
 
       <AwesomeButton
@@ -68,7 +73,8 @@ function SetupScreen({navigation}) {
 
   return (
     <View style = {styles.container}>
-      <Text>Which town are you from?</Text>
+      <Image source={skyline} style={styles.logo} />
+      <Text style={styles.text}>Which town are you from?</Text>
       <TextInput
         //style={styles.input}
         onChangeText={inputHandler}
@@ -78,7 +84,9 @@ function SetupScreen({navigation}) {
       />      
     </View>
 
-    
+// <Image source={bcabuslogo}/>     
+
+
   );
 }
 
@@ -195,37 +203,41 @@ class SendNotifScreen extends Component {
     super(props);
 
     this.state = {
-      tableHead: ['Stop', 'Estimated Time', 'Arrived'],
+      tableHead: ['Stop', 'Status', 'Alert'],
       tableData: [
         ['Kinderkamack Rd & Ralph Ave, HD', 'Pending', ''],
-        ['Prospect St & Ruckman Rd, RV', '6:35', ''],
-        ['Rivervale Rd & Woodside Ave, RV', '6:40', ''],
-        ['Winding Way & Dorchester Dr, RV', '6:41', ''],
-        ['Rivervale Rd & Barr Ct, RV', '6:44', ''],
-        ['Rivervale Rd & Wittich Terr, RV', '6:44', ''],
-        ['Rivervale Rd & Thurnau Dr, RV', '6:45', ''],
-        ['Rivervale Rd & Woodland Ct, RV', '6:45', ''],
-        ['Piermont Ave & Holiday Farms, RV', '6:47', ''],
-        ['Cedar La & E. Liberty Ave, RV', '6:48', ''],
-        ['Cedar La & Dearest Ave, RV', '6:49', ''],
-        ['Cleveland Ave & Nelson Cr, RV', '6:50', ''],
-        ['Cleveland Ave & Rockland, RV', '6:50', ''],
-        ['Cleveland Ave & May St, RV', '6:52', ''],
-        ['Rockland & Hudson Ave, RV', '6:52', ''],
-        ['Westwood Ave & Oak Ave, RV', '6:55', ''],
-        ['Westwood Ave & Rivervale, RV', '6:57', ''],
-        ['Rivervale Rd & Tiffany, RV', '6:58', '']
+        ['Prospect St & Ruckman Rd, RV', 'Pending', ''],
+        ['Rivervale Rd & Woodside Ave, RV', 'Pending', ''],
+        ['Winding Way & Dorchester Dr, RV', 'Pending', ''],
+        ['Rivervale Rd & Barr Ct, RV', 'Pending', ''],
+        ['Rivervale Rd & Wittich Terr, RV', 'Pending', ''],
+        ['Rivervale Rd & Thurnau Dr, RV', 'Pending', ''],
+        ['Rivervale Rd & Woodland Ct, RV', 'Pending', ''],
+        ['Piermont Ave & Holiday Farms, RV', 'Pending', ''],
+        ['Cedar La & E. Liberty Ave, RV', 'Pending', ''],
+        ['Cedar La & Dearest Ave, RV', 'Pending', ''],
+        ['Cleveland Ave & Nelson Cr, RV', 'Pending', ''],
+        ['Cleveland Ave & Rockland, RV', 'Pending', ''],
+        ['Cleveland Ave & May St, RV', 'Pending', ''],
+        ['Rockland & Hudson Ave, RV', 'Pending', ''],
+        ['Westwood Ave & Oak Ave, RV', 'Pending', ''],
+        ['Westwood Ave & Rivervale, RV', 'Pending', ''],
+        ['Rivervale Rd & Tiffany, RV', 'Pending', '']
       ],
-      hasArrived: ['Arrived', 'Pending']
     }
   }
 
 
   _alertIndex(index) {
-    Alert.alert(`The bus has arrived at ${this.state.tableData[index][0]}`);
     if (this.state.tableData[index][1] == "Pending") {
+      Alert.alert(`The bus has arrived at ${this.state.tableData[index][0]}`);
       this.state.tableData[index][1] = "Arrived";
+      //
     }
+    else {
+      this.state.tableData[index][1] = "Pending";
+    }
+    this.forceUpdate();
     console.log("hi " + this.state.tableData[index][1]);
   }
 
@@ -243,13 +255,26 @@ class SendNotifScreen extends Component {
      );
      */
 
-    const element = (data, index) => (
+    const element2 = (data, index) => (
       <TouchableOpacity onPress={() => this._alertIndex(index)}>
-        <View style={styles.tableButtons}>
+        <View style={styles .tableButtons}>
           <Text style={styles.btnText}>button</Text>
         </View>
       </TouchableOpacity>
     );
+
+    const element = (data, index) => (
+      
+      <AwesomeButton
+      title="LOL PLEASE WORK?"
+      backgroundColor="#1480a3"
+      borderColor="white"
+      type="primary"
+      onPress={() => this._alertIndex(index) }
+      style={styles.tableButtons}
+      >Change Status</AwesomeButton>  
+    );
+
 
     //const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -277,10 +302,15 @@ class SendNotifScreen extends Component {
     return (
 
       <ScrollView style={styles.container1} >
-        <Text style={styles.tableTitle}>My Grey Knight
+        <Text style={styles.tableTitle}>Route Check
         </Text>
-        <Table borderStyle={{ borderColor: 'transparent' }}>
-          <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
+        <Table borderStyle={{ borderColor: 'black' }}>
+          <Row 
+            data={state.tableHead} 
+            style={styles.head} 
+            textStyle={styles.tableHeadText} 
+            widthArr={state.widthArr}
+            />
           {
             state.tableData.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
@@ -297,6 +327,11 @@ class SendNotifScreen extends Component {
             ))
           }
         </Table>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
 
       </ScrollView>
     )
