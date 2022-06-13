@@ -9,10 +9,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  questionContainer: {
+    flex: 1,
+    marginBottom: 100,
+    backgroundColor: '#125e50',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
   logo: {
     width: 305,
     height: 305,
-    marginBottom: 0,
+    marginBottom: 20,
   },
   homeScreenTitle: {
     color: '#ffffff',
@@ -49,11 +57,10 @@ export default StyleSheet.create({
   tableHeadText: {
     fontSize: 20
   },
-  text: {
+  tableText: {
     margin: 10,
     //fontFamily: 'Quicksand_300Light',
-    fontSize: 16
-
+    fontSize: 16,
   },
   row: {
     flexDirection: 'row',
@@ -88,6 +95,18 @@ export default StyleSheet.create({
   },
   setUpScreen: {
     fontSize: 10
+  },
+  questionTexts: {
+    fontSize: 20,
+    color: "white",
+    paddingTop: 100,
+    
+  },
+  inputText: {
+    color: "white"
   }
+
+
+  
 
 })

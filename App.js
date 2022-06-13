@@ -48,7 +48,7 @@ function HomeScreen({ navigation }) {
         backgroundColor="#1480a3"
         borderColor="white"
         type="primary"
-        onPress={() => navigation.navigate('SetupScreen')}
+        onPress={() => navigation.navigate('ChooseTownScreen')}
         style={styles.navigation}
         >Get Started</AwesomeButton>  
 
@@ -60,7 +60,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function SetupScreen({navigation}) {
+function ChooseTownScreen({navigation}) {
   // const [text, onChangeText] = React.useState("Your town...");
   const [town, setTown] = React.useState(null);
 
@@ -72,16 +72,19 @@ function SetupScreen({navigation}) {
   };
 
   return (
-    <View style = {styles.container}>
+    <View style = {styles.questionContainer}>
       <Image source={skyline} style={styles.logo} />
-      <Text style={styles.text}>Which town are you from?</Text>
-      <TextInput
+      <Text style={styles.questionTexts}>Which town are you from?</Text>
+      <TextInput style={styles.inputText}
+          onChangeText={inputHandler}
+          value={town}
+          placeholder="Your town..."
+          keyboardType="text"      
+          defaultValue='River Vale'
         //style={styles.input}
-        onChangeText={inputHandler}
-        value={town}
-        placeholder="Your town..."
-        keyboardType="text"
       />      
+      <StatusBar style="auto" />
+
     </View>
 
 // <Image source={bcabuslogo}/>     
@@ -95,7 +98,7 @@ function SummaryScreen({navigation}) {
   
   return (
     <View style = {styles.container}>
-      <Text>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
+      <Text style={style.questionTexts}>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
          
       <Button
         title="SendNotifScreen"
@@ -120,7 +123,7 @@ function SetStopScreen({navigation}) {
 
   return (
     <View style = {styles.container}>
-      <Text>Which stop do you wait at?</Text>
+      <Text style={styles.questionTexts}>Which stop do you wait at?</Text>
       <TextInput
         //style={styles.input}
         onChangeText={inputHandler}
@@ -132,16 +135,6 @@ function SetStopScreen({navigation}) {
 
   );
  
-}
-
-
-
-function SecondScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title} >LOL!</Text>
-    </View>
-  );
 }
 
 function tSwitch() {
@@ -161,17 +154,6 @@ function tSwitch() {
     </ScrollView>
   )
 
-}
-
-function curValue(val) {
-  /* if (val) {
-    System.out.println("EXCUSE U LOOK HERE");
-    return false;
-  }
-  return true;
-  */
-  //val ? false : true;
-  return !val;
 }
 
 function SendNotifScreen1() {
@@ -320,7 +302,7 @@ class SendNotifScreen extends Component {
                     //<Cell key={cellIndex} data={cellIndex === 2 ? element(cellData, index) : cellData} textStyle={styles.text} />
                     <Cell key={cellIndex} 
                     data={cellIndex == 2 ? element(cellData, index) : cellData}
-                    textStyle={styles.text} />
+                    textStyle={styles.tableText} />
                   ))
                 }
               </TableWrapper>
@@ -353,7 +335,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SendNotifScreen" component={SendNotifScreen} />
-        <Stack.Screen name="SetupScreen" component={SetupScreen} />
+        <Stack.Screen name="ChooseTownScreen" component={ChooseTownScreen} />
         <Stack.Screen name="SetStopScreen" component={SetStopScreen} />
         <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
 
