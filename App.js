@@ -46,24 +46,47 @@ function HomeScreen({ navigation }) {
 
 function SetupScreen({navigation}) {
   // const [text, onChangeText] = React.useState("Your town...");
+
+  function initialState() {
+    return {
+      focusDescriptionInput: false,
+    };
+  }
+
   const [town, setTown] = React.useState(null);
 
-  const inputHandler = (enteredText) => {
+  
+
+  
+
+  const inputHandler = (e, enteredText) => {
     setTown(enteredText);
-    if (enteredText == "River Vale") {
-      navigation.navigate('SetStopScreen');
+    if (e.key == `Return`){
+      if (enteredText == "River Vale") {
+        navigation.navigate('SetStopScreen');
+      }
+      else{
+        Alert.alert(enteredText + `is not a valid town.`);
+        navigation.navigate('SetupScreen');
+      }
     }
   };
 
+  // const handleTitleInputSubmit = () => {
+  //   this.setState(focusDescriptionInput: true);
+  // }
+
   return (
     <View style = {styles.container}>
-      <Text>Which town are you from?</Text>
-      <TextInput
+      <Text style = {styles.startText}>Which town are you from?</Text>
+      <TextInput style = {styles.inputText}
         //style={styles.input}
-        onChangeText={inputHandler}
+        onKeyDown={inputHandler}
         value={town}
         placeholder="Your town..."
         keyboardType="text"
+        // onSubmitEditing={}
+        // focus={this.state}
       />      
     </View>
 
@@ -101,7 +124,7 @@ function SetStopScreen({navigation}) {
 
   return (
     <View style = {styles.container}>
-      <Text>Which stop do you wait at?</Text>
+      <Text style = {styles.startText}>Which stop do you wait at?</Text>
       <TextInput
         //style={styles.input}
         onChangeText={inputHandler}

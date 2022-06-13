@@ -64,6 +64,20 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
 
+  },
+  startText: {
+    fontFamily: 'Quicksand_300Light',
+    fontSize: 30,
+    textAlign: 'center',
+    color: '#ffffff'
+
+  },
+  inputText: {
+    fontFamily: 'Quicksand_300Light',
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#D3D3D3'
+
   }
 
 
