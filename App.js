@@ -186,7 +186,7 @@ class SendNotifScreen extends Component {
     this.state = {
       tableHead: ['Stop', 'Estimated Time', 'Arrived'],
       tableData: [
-        ['Kinderkamack Rd & Ralph Ave, HD', '6:32', ''],
+        ['Kinderkamack Rd & Ralph Ave, HD', 'Pending', ''],
         ['Prospect St & Ruckman Rd, RV', '6:35', ''],
         ['Rivervale Rd & Woodside Ave, RV', '6:40', ''],
         ['Winding Way & Dorchester Dr, RV', '6:41', ''],
@@ -211,7 +211,11 @@ class SendNotifScreen extends Component {
 
 
   _alertIndex(index) {
-    Alert.alert(`This is row ${index + 1}`);
+    Alert.alert(`The bus has arrived at ${this.state.tableData[index][0]}`);
+    if (this.state.tableData[index][1] == "Pending") {
+      this.state.tableData[index][1] = "Arrived";
+    }
+    console.log("hi " + this.state.tableData[index][1]);
   }
 
 
@@ -230,16 +234,21 @@ class SendNotifScreen extends Component {
 
     const element = (data, index) => (
       <TouchableOpacity onPress={() => this._alertIndex(index)}>
-        <View style={styles.btn}>
+        <View style={styles.tableButtons}>
           <Text style={styles.btnText}>button</Text>
         </View>
       </TouchableOpacity>
     );
 
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    //const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
-    const element1 = () => (
+    const element1 = () => {
+
       <Switch
+        // const [isEnabled, setIsEnabled] = useState(false)
+        isEnabled = {useState(false)}
+        setIsEnabled = {useState(false)}
+        toggleSwitch = {(setIsEnabled(previousState => !previousState))}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={'#f5dd4b'}
         //thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -247,15 +256,17 @@ class SendNotifScreen extends Component {
         onValueChange={(value) => console.log(value)}
         value={this.state.switchValue}
 
-      />
-    );
+      />;
+    }
 
 
+    //const [isEnabled, setIsEnabled] = useState(false);
+    //const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
 
       <ScrollView style={styles.container1} >
-        <Text style={{ fontFamily: 'Quicksand_300Light', fontSize: 40 }}>My Grey Knight
+        <Text style={styles.tableTitle}>My Grey Knight
         </Text>
         <Table borderStyle={{ borderColor: 'transparent' }}>
           <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
@@ -264,8 +275,11 @@ class SendNotifScreen extends Component {
               <TableWrapper key={index} style={styles.row}>
                 {
                   rowData.map((cellData, cellIndex) => (
+
                     //<Cell key={cellIndex} data={cellIndex === 2 ? element(cellData, index) : cellData} textStyle={styles.text} />
-                    <Cell key={cellIndex} data={cellIndex === 2 ? element1(true) : cellData} textStyle={styles.text} />
+                    <Cell key={cellIndex} 
+                    data={cellIndex == 2 ? element(cellData, index) : cellData}
+                    textStyle={styles.text} />
                   ))
                 }
               </TableWrapper>

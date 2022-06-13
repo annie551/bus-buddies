@@ -36,6 +36,12 @@ export default StyleSheet.create({
     paddingTop: 30,
     backgroundColor: '#125e50',
   },
+  tableTitle: {
+    fontFamily: 'Quicksand_300Light', 
+    fontSize: 40,
+    color: 'white',
+    marginBottom: 10
+  },
   head: { // head is the top of the table
     padding: 1,
     height: 60,
@@ -54,7 +60,7 @@ export default StyleSheet.create({
     height: 75,
     backgroundColor: '#FFF1C1'
   },
-  btn: {
+  tableButtons: {
     width: 50,
     height: 20,
     backgroundColor: '#78B7BB',
