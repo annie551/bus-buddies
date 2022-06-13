@@ -26,9 +26,7 @@ export default StyleSheet.create({
 
   },
   playButtonText: {
-    fontSize: 20,
     color: 'light blue',
-    backgroundColor: "white",
   },
   container1: {
     flex: 1,
@@ -70,7 +68,27 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
 
-  }
-
+  },
+  navigationButtons: {
+    backgroundColor: "#1480a3",
+    borderColor: "white",
+    type: "primary",
+},
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'black',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
 
 })

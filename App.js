@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView } from 'react-native';
+import { Pressable, Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, Component, Fragment, FC } from 'react';
 import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
+import AwesomeButton from "react-native-really-awesome-button";
+
 
 
 
@@ -26,17 +28,26 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Image source={bcabuslogo} style={styles.logo} />
       <Text style={styles.homeScreenTitle} >Bus Buddies!</Text>
-      <Button
-        title="SendNotifScreen"
-        onPress={() => navigation.navigate('SendNotifScreen')}
-        style={styles.playButton}
-      />
 
-      <Button
-        title="Get started"
+      <AwesomeButton
+        backgroundColor="#1480a3"
+        borderColor="white"
+        type="primary"
+        onPress={() => navigation.navigate('SendNotifScreen')}
+        style={styles.navigation}
+        >Bus Arrival</AwesomeButton>  
+
+      <Text></Text>
+
+      <AwesomeButton
+        backgroundColor="#1480a3"
+        borderColor="white"
+        type="primary"
         onPress={() => navigation.navigate('SetupScreen')}
-        style={styles.playButton}
-      />
+        style={styles.navigation}
+        >Get Started</AwesomeButton>  
+
+      <Text></Text>
 
       <StatusBar style="auto" />
 
