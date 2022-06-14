@@ -1,5 +1,5 @@
 import { processFontFamily } from "expo-font"
-import { useFonts, Baloo2_400Regular } from '@expo-google-fonts/baloo-2';
+import { useFonts, Jost_400Regular } from '@expo-google-fonts/jost';
 import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
@@ -50,43 +50,40 @@ export default StyleSheet.create({
     backgroundColor: '#125e50',
   },
     tableTitle: {
-    fontFamily: 'Baloo2_400Regular', 
+    fontFamily: 'Jost_400Regular', 
     fontSize: 40,
     color: 'white',
     marginBottom: 10
   },
   head: { // head is the top of the table
-    padding: 10,
-    paddingLeft: 10,
     height: 60,
     backgroundColor: '#FFC300',
-    fontFamily: 'Baloo2_400Regular',
+    //fontFamily: 'Jost_400Regular',
     fontSize: 40
   },
   tableHeadText: {
-    fontSize: 20
+    padding: 10,
+    fontSize: 24,
+    fontFamily: 'Jost_400Regular',
+
   },
   tableText: {
-    margin: 10,
-    fontFamily: 'Baloo2_400Regular',
+    margin: 15,
+    fontFamily: 'Jost_400Regular',
     fontSize: 16,
   },
   row: {
     flexDirection: 'row',
-    height: 80,
+    height: 100,
     backgroundColor: '#FFF1C1'
   },
   tableButtons: {
     backgroundColor: '#78B7BB',
     borderRadius: 2,
     textAlign: 'right',
+    texfontFamily: 'Jost_400Regular',
     //fle-xDirection: 'row', 
     //justifyContent: 'flex-end'
-  },
-    btnText: {
-    textAlign: 'center',
-    color: '#fff'
-
   },
   navigationButtons: {
     backgroundColor: "#1480a3",

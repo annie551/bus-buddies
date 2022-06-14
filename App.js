@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable, KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useFonts, Baloo2_400Regular } from '@expo-google-fonts/baloo-2';
+import { useFonts, Jost_400Regular } from '@expo-google-fonts/jost';
 import React, { useState, Component, Fragment, FC, useEffect } from 'react';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import AwesomeButton from "react-native-really-awesome-button";
@@ -74,7 +74,7 @@ function ChooseTownScreen({navigation}) {
           value={town}
           placeholder="Your town..."
           keyboardType="text"      
-          defaultValue='River Vale'
+          // defaultValue='River Vale'
       />      
       <StatusBar style="auto" />
 
@@ -108,7 +108,7 @@ function SetStopScreen({navigation}) {
           value={stop}
           placeholder="Your stop..."
           keyboardType="text"
-          defaultValue='Cleveland & Rockland'
+          //defaultValue='Cleveland & Rockland'
         />   
         <StatusBar style="auto" />
    
@@ -232,6 +232,7 @@ class SendNotifScreen extends Component {
     const element = (data, index) => (
       
       <AwesomeButton
+      
       title="LOL PLEASE WORK?"
       backgroundColor="#1480a3"
       borderColor="white"
@@ -315,7 +316,7 @@ function App() {
   // });
 
   let [fontsLoaded] = useFonts({
-    Baloo2_400Regular,
+    Jost_400Regular,
   });
 
  
