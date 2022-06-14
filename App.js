@@ -1,14 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView } from 'react-native';
+import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, Component, Fragment, FC, useEffect } from 'react';
 import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
-import "reflect-metadata";
+import AwesomeButton from "react-native-really-awesome-button";
+
+
+
 
 
 import bcabuslogo from './assets/bcabuslogo.png';
+import skyline from './assets/skyline.png';
+import buslogo from './assets/buslogo.png';
 // import { AwesomeButton } from "react-awesome-button";
 // import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 
@@ -20,22 +25,34 @@ import styles from "./style"
 //     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
 //   });
 
+
+//      <Image source={bcabuslogo} style={styles.logo} />
+
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image source={bcabuslogo} style={styles.logo} />
+      <Image source={buslogo} style={styles.logo} />
       <Text style={styles.homeScreenTitle} >Bus Buddies!</Text>
-      <Button
-        title="SendNotifScreen"
-        onPress={() => navigation.navigate('SendNotifScreen')}
-        style={styles.playButton}
-      />
 
-      <Button
-        title="Get started"
-        onPress={() => navigation.navigate('SetupScreen')}
-        style={styles.playButton}
-      />
+      <AwesomeButton
+        backgroundColor="#1480a3"
+        borderColor="white"
+        type="primary"
+        onPress={() => navigation.navigate('SendNotifScreen')}
+        style={styles.navigation}
+        >Bus Arrival</AwesomeButton>  
+
+      <Text></Text>
+
+      <AwesomeButton
+        backgroundColor="#1480a3"
+        borderColor="white"
+        type="primary"
+        onPress={() => navigation.navigate('ChooseTownScreen')}
+        style={styles.navigation}
+        >Get Started</AwesomeButton>  
+
+      <Text></Text>
 
       <StatusBar style="auto" />
 
@@ -43,7 +60,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function SetupScreen({navigation}) {
+function ChooseTownScreen({navigation}) {
   // const [text, onChangeText] = React.useState("Your town...");
   const [town, setTown] = React.useState(null);
 
@@ -55,18 +72,24 @@ function SetupScreen({navigation}) {
   };
 
   return (
-    <View style = {styles.container}>
-      <Text>Which town are you from?</Text>
-      <TextInput
+    <View style = {styles.questionContainer}>
+      <Image source={skyline} style={styles.logo} />
+      <Text style={styles.questionTexts}>Which town are you from?</Text>
+      <TextInput style={styles.inputText}
+          onChangeText={inputHandler}
+          value={town}
+          placeholder="Your town..."
+          keyboardType="text"      
+          defaultValue='River Vale'
         //style={styles.input}
-        onChangeText={inputHandler}
-        value={town}
-        placeholder="Your town..."
-        keyboardType="text"
       />      
+      <StatusBar style="auto" />
+
     </View>
 
-    
+// <Image source={bcabuslogo}/>     
+
+
   );
 }
 
@@ -75,7 +98,7 @@ function SummaryScreen({navigation}) {
   
   return (
     <View style = {styles.container}>
-      <Text>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
+      <Text style={style.questionTexts}>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
          
       <Button
         title="SendNotifScreen"
@@ -100,7 +123,7 @@ function SetStopScreen({navigation}) {
 
   return (
     <View style = {styles.container}>
-      <Text>Which stop do you wait at?</Text>
+      <Text style={styles.questionTexts}>Which stop do you wait at?</Text>
       <TextInput
         //style={styles.input}
         onChangeText={inputHandler}
@@ -112,16 +135,6 @@ function SetStopScreen({navigation}) {
 
   );
  
-}
-
-
-
-function SecondScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title} >LOL!</Text>
-    </View>
-  );
 }
 
 function tSwitch() {
@@ -141,17 +154,6 @@ function tSwitch() {
     </ScrollView>
   )
 
-}
-
-function curValue(val) {
-  /* if (val) {
-    System.out.println("EXCUSE U LOOK HERE");
-    return false;
-  }
-  return true;
-  */
-  //val ? false : true;
-  return !val;
 }
 
 function SendNotifScreen1() {
@@ -183,34 +185,42 @@ class SendNotifScreen extends Component {
     super(props);
 
     this.state = {
-      tableHead: ['Stop', 'Estimated Time', 'Arrived'],
+      tableHead: ['Stop', 'Status', 'Alert'],
       tableData: [
-        ['Kinderkamack Rd & Ralph Ave, HD', '6:32', ''],
-        ['Prospect St & Ruckman Rd, RV', '6:35', ''],
-        ['Rivervale Rd & Woodside Ave, RV', '6:40', ''],
-        ['Winding Way & Dorchester Dr, RV', '6:41', ''],
-        ['Rivervale Rd & Barr Ct, RV', '6:44', ''],
-        ['Rivervale Rd & Wittich Terr, RV', '6:44', ''],
-        ['Rivervale Rd & Thurnau Dr, RV', '6:45', ''],
-        ['Rivervale Rd & Woodland Ct, RV', '6:45', ''],
-        ['Piermont Ave & Holiday Farms, RV', '6:47', ''],
-        ['Cedar La & E. Liberty Ave, RV', '6:48', ''],
-        ['Cedar La & Dearest Ave, RV', '6:49', ''],
-        ['Cleveland Ave & Nelson Cr, RV', '6:50', ''],
-        ['Cleveland Ave & Rockland, RV', '6:50', ''],
-        ['Cleveland Ave & May St, RV', '6:52', ''],
-        ['Rockland & Hudson Ave, RV', '6:52', ''],
-        ['Westwood Ave & Oak Ave, RV', '6:55', ''],
-        ['Westwood Ave & Rivervale, RV', '6:57', ''],
-        ['Rivervale Rd & Tiffany, RV', '6:58', '']
+        ['Kinderkamack Rd & Ralph Ave, HD', 'Pending', ''],
+        ['Prospect St & Ruckman Rd, RV', 'Pending', ''],
+        ['Rivervale Rd & Woodside Ave, RV', 'Pending', ''],
+        ['Winding Way & Dorchester Dr, RV', 'Pending', ''],
+        ['Rivervale Rd & Barr Ct, RV', 'Pending', ''],
+        ['Rivervale Rd & Wittich Terr, RV', 'Pending', ''],
+        ['Rivervale Rd & Thurnau Dr, RV', 'Pending', ''],
+        ['Rivervale Rd & Woodland Ct, RV', 'Pending', ''],
+        ['Piermont Ave & Holiday Farms, RV', 'Pending', ''],
+        ['Cedar La & E. Liberty Ave, RV', 'Pending', ''],
+        ['Cedar La & Dearest Ave, RV', 'Pending', ''],
+        ['Cleveland Ave & Nelson Cr, RV', 'Pending', ''],
+        ['Cleveland Ave & Rockland, RV', 'Pending', ''],
+        ['Cleveland Ave & May St, RV', 'Pending', ''],
+        ['Rockland & Hudson Ave, RV', 'Pending', ''],
+        ['Westwood Ave & Oak Ave, RV', 'Pending', ''],
+        ['Westwood Ave & Rivervale, RV', 'Pending', ''],
+        ['Rivervale Rd & Tiffany, RV', 'Pending', '']
       ],
-      hasArrived: ['Arrived', 'Pending']
     }
   }
 
 
   _alertIndex(index) {
-    Alert.alert(`This is row ${index + 1}`);
+    if (this.state.tableData[index][1] == "Pending") {
+      Alert.alert(`The bus has arrived at ${this.state.tableData[index][0]}`);
+      this.state.tableData[index][1] = "Arrived";
+      //
+    }
+    else {
+      this.state.tableData[index][1] = "Pending";
+    }
+    this.forceUpdate();
+    console.log("hi " + this.state.tableData[index][1]);
   }
 
 
@@ -227,18 +237,36 @@ class SendNotifScreen extends Component {
      );
      */
 
-    const element = (data, index) => (
+    const element2 = (data, index) => (
       <TouchableOpacity onPress={() => this._alertIndex(index)}>
-        <View style={styles.btn}>
+        <View style={styles .tableButtons}>
           <Text style={styles.btnText}>button</Text>
         </View>
       </TouchableOpacity>
     );
 
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const element = (data, index) => (
+      
+      <AwesomeButton
+      title="LOL PLEASE WORK?"
+      backgroundColor="#1480a3"
+      borderColor="white"
+      type="primary"
+      onPress={() => this._alertIndex(index) }
+      style={styles.tableButtons}
+      >Change Status</AwesomeButton>  
+    );
 
-    const element1 = () => (
+
+    //const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+    const element1 = () => {
+
       <Switch
+        // const [isEnabled, setIsEnabled] = useState(false)
+        isEnabled = {useState(false)}
+        setIsEnabled = {useState(false)}
+        toggleSwitch = {(setIsEnabled(previousState => !previousState))}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={'#f5dd4b'}
         //thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -246,31 +274,46 @@ class SendNotifScreen extends Component {
         onValueChange={(value) => console.log(value)}
         value={this.state.switchValue}
 
-      />
-    );
+      />;
+    }
 
 
+    //const [isEnabled, setIsEnabled] = useState(false);
+    //const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
 
       <ScrollView style={styles.container1} >
-        <Text style={{ fontFamily: 'Quicksand_300Light', fontSize: 40 }}>My Grey Knight
+        <Text style={styles.tableTitle}>Route Check
         </Text>
-        <Table borderStyle={{ borderColor: 'transparent' }}>
-          <Row data={state.tableHead} style={styles.head} textStyle={styles.text} />
+        <Table borderStyle={{ borderColor: 'black' }}>
+          <Row 
+            data={state.tableHead} 
+            style={styles.head} 
+            textStyle={styles.tableHeadText} 
+            widthArr={state.widthArr}
+            />
           {
             state.tableData.map((rowData, index) => (
               <TableWrapper key={index} style={styles.row}>
                 {
                   rowData.map((cellData, cellIndex) => (
+
                     //<Cell key={cellIndex} data={cellIndex === 2 ? element(cellData, index) : cellData} textStyle={styles.text} />
-                    <Cell key={cellIndex} data={cellIndex === 2 ? element1(true) : cellData} textStyle={styles.text} />
+                    <Cell key={cellIndex} 
+                    data={cellIndex == 2 ? element(cellData, index) : cellData}
+                    textStyle={styles.tableText} />
                   ))
                 }
               </TableWrapper>
             ))
           }
         </Table>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
 
       </ScrollView>
     )
@@ -293,7 +336,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SendNotifScreen" component={SendNotifScreen} />
-        <Stack.Screen name="SetupScreen" component={SetupScreen} />
+        <Stack.Screen name="ChooseTownScreen" component={ChooseTownScreen} />
         <Stack.Screen name="SetStopScreen" component={SetStopScreen} />
         <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
 

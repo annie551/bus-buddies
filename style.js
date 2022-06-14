@@ -1,4 +1,5 @@
 import { processFontFamily } from "expo-font"
+import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
@@ -8,10 +9,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  questionContainer: {
+    flex: 1,
+    marginBottom: 100,
+    backgroundColor: '#125e50',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
   logo: {
     width: 305,
     height: 305,
-    marginBottom: 0,
+    marginBottom: 20,
   },
   homeScreenTitle: {
     color: '#ffffff',
@@ -25,46 +34,79 @@ export default StyleSheet.create({
     borderRadius: 25,
 
   },
-  playButtonText: {
-    fontSize: 20,
-    color: 'light blue',
-    backgroundColor: "white",
-  },
   container1: {
     flex: 1,
     padding: 16,
     paddingTop: 30,
     backgroundColor: '#125e50',
   },
+    tableTitle: {
+    fontFamily: 'Quicksand_300Light', 
+    fontSize: 40,
+    color: 'white',
+    marginBottom: 10
+  },
   head: { // head is the top of the table
-    padding: 1,
+    padding: 10,
+    paddingLeft: 10,
     height: 60,
     backgroundColor: '#FFC300',
-    fontFamily: 'Quicksand_300Light',
+    //fontFamily: 'Quicksand_300Light',
     fontSize: 40
   },
-  text: {
+  tableHeadText: {
+    fontSize: 20
+  },
+  tableText: {
     margin: 10,
-    fontFamily: 'Quicksand_300Light',
-    fontSize: 12
-
+    //fontFamily: 'Quicksand_300Light',
+    fontSize: 16,
   },
   row: {
     flexDirection: 'row',
-    height: 75,
+    height: 80,
     backgroundColor: '#FFF1C1'
   },
-  btn: {
-    width: 50,
-    height: 20,
+  tableButtons: {
     backgroundColor: '#78B7BB',
-    borderRadius: 2
+    borderRadius: 2,
+    textAlign: 'right',
+    //fle-xDirection: 'row', 
+    //justifyContent: 'flex-end'
   },
-  btnText: {
+    btnText: {
     textAlign: 'center',
     color: '#fff'
 
+  },
+  navigationButtons: {
+    backgroundColor: "#1480a3",
+    borderColor: "white",
+    type: "primary",
+},
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'black',
+  },
+  setUpScreen: {
+    fontSize: 10
+  },
+  questionTexts: {
+    fontSize: 20,
+    color: "white",
+    paddingTop: 100,
+    
+  },
+  inputText: {
+    color: "white"
   }
 
+
+  
 
 })
