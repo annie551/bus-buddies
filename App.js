@@ -2,11 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState, Component, Fragment, FC } from 'react';
+import React, { useState, Component, Fragment, FC, useEffect } from 'react';
 import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
-
-
+import "reflect-metadata";
 
 
 import bcabuslogo from './assets/bcabuslogo.png';
@@ -288,6 +287,7 @@ function App() {
   //   Inter_900Black,
   // });
 
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
