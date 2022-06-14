@@ -8,7 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/baloo-2": "^0.2.2",
     "@expo-google-fonts/inter": "^0.2.2",
+    "@expo-google-fonts/jost": "^0.2.2",
     "@expo-google-fonts/quicksand": "^0.2.2",
     "@expo/webpack-config": "~0.16.2",
     "@react-native-community/netinfo": "8.2.0",
@@ -17,6 +19,7 @@
     "@react-navigation/native-stack": "^6.6.2",
     "downloadbutton": "^1.0.0",
     "expo": "~45.0.0",
+    "expo-app-loading": "^2.0.0",
     "expo-av": "~11.2.3",
     "expo-document-picker": "~10.2.1",
     "expo-file-system": "~14.0.0",
@@ -36,6 +39,7 @@
     "react-native-dropdown": "^0.0.6",
     "react-native-gesture-handler": "~2.2.1",
     "react-native-material-dropdown": "^0.11.1",
+    "react-native-really-awesome-button": "^1.6.0",
     "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "4.2.4",
     "react-native-screens": "~3.11.1",
@@ -45,12 +49,20 @@
     "react-native-table-component": "^1.2.2",
     "react-native-web": "0.17.7",
     "react-swipeable-drawer": "^3.1.0",
+    "reflect-metadata": "^0.1.13",
+    "socket-controllers": "^0.0.5",
+    "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1",
     "stream-chat": "^6.6.0",
     "stream-chat-react-native": "^4.7.0",
+    "styled-components": "^5.3.5",
     "webpack-dev-server": "~3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
   },
   "private": true
 }
