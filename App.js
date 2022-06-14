@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable, KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState, Component, Fragment, FC } from 'react';
 import { useFonts, Baloo2_400Regular } from '@expo-google-fonts/baloo-2';
+import React, { useState, Component, Fragment, FC, useEffect } from 'react';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import AwesomeButton from "react-native-really-awesome-button";
 
@@ -318,6 +318,7 @@ function App() {
     Baloo2_400Regular,
   });
 
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
