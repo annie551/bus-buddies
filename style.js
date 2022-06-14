@@ -1,5 +1,5 @@
 import { processFontFamily } from "expo-font"
-import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
+import { useFonts, Baloo2_400Regular } from '@expo-google-fonts/baloo-2';
 import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
@@ -8,14 +8,23 @@ export default StyleSheet.create({
     backgroundColor: '#125e50',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
-  questionContainer: {
+  questionContainer1: {
     flex: 1,
-    marginBottom: 100,
+    paddingBottom: 150,
     backgroundColor: '#125e50',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
 
+  },
+
+  skylineLogo: {
+    width: 300,
+    height: 110,
+  },
+  redstop: {
+    width: 300,
   },
   logo: {
     width: 305,
@@ -41,7 +50,7 @@ export default StyleSheet.create({
     backgroundColor: '#125e50',
   },
     tableTitle: {
-    fontFamily: 'Quicksand_300Light', 
+    fontFamily: 'Baloo2_400Regular', 
     fontSize: 40,
     color: 'white',
     marginBottom: 10
@@ -51,7 +60,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
     height: 60,
     backgroundColor: '#FFC300',
-    //fontFamily: 'Quicksand_300Light',
+    fontFamily: 'Baloo2_400Regular',
     fontSize: 40
   },
   tableHeadText: {
@@ -59,7 +68,7 @@ export default StyleSheet.create({
   },
   tableText: {
     margin: 10,
-    //fontFamily: 'Quicksand_300Light',
+    fontFamily: 'Baloo2_400Regular',
     fontSize: 16,
   },
   row: {
@@ -97,14 +106,21 @@ export default StyleSheet.create({
     fontSize: 10
   },
   questionTexts: {
-    fontSize: 20,
+    fontSize: 24,
     color: "white",
-    paddingTop: 100,
+    paddingTop: 20,
+    paddingBottom: 10,
     
   },
   inputText: {
-    color: "white"
-  }
+    color: "white",
+    placeholderTextColor: "white",
+    height: 40,
+    borderColor: "white",
+    borderBottomWidth: 1,
+    marginBottom: 36,
+    fontSize: 15,
+  },
 
 
   

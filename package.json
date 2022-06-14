@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/baloo-2": "^0.2.2",
     "@expo-google-fonts/inter": "^0.2.2",
     "@expo-google-fonts/quicksand": "^0.2.2",
     "@expo/webpack-config": "~0.16.2",

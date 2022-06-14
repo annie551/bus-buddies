@@ -1,32 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable } from 'react-native';
+import { Image, StyleSheet, Picker, TouchableOpacity, Text, TextInput, View, Button, Alert, Switch, ScrollView, Touchable, KeyboardAvoidingView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, Component, Fragment, FC } from 'react';
-import { useFonts, Quicksand_300Light } from '@expo-google-fonts/quicksand';
+import { useFonts, Baloo2_400Regular } from '@expo-google-fonts/baloo-2';
 import { Table, TableWrapper, Row, Cell } from 'react-native-table-component';
 import AwesomeButton from "react-native-really-awesome-button";
-
-
-
-
 
 import bcabuslogo from './assets/bcabuslogo.png';
 import skyline from './assets/skyline.png';
 import buslogo from './assets/buslogo.png';
+import redstop from './assets/redstop.png';
 // import { AwesomeButton } from "react-awesome-button";
 // import AwesomeButtonStyles from "react-awesome-button/src/styles/styles.scss";
 
 
 import styles from "./style"
 
-// export default props => {
-//   let [fontsLoaded] = useFonts({
-//     'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
-//   });
-
-
-//      <Image source={bcabuslogo} style={styles.logo} />
 
 function HomeScreen({ navigation }) {
   return (
@@ -72,8 +62,12 @@ function ChooseTownScreen({navigation}) {
   };
 
   return (
-    <View style = {styles.questionContainer}>
-      <Image source={skyline} style={styles.logo} />
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.container}>
+
+    <View style = {styles.questionContainer1}>
+      <Image source={skyline} style={styles.skylineLogo} />
       <Text style={styles.questionTexts}>Which town are you from?</Text>
       <TextInput style={styles.inputText}
           onChangeText={inputHandler}
@@ -81,35 +75,15 @@ function ChooseTownScreen({navigation}) {
           placeholder="Your town..."
           keyboardType="text"      
           defaultValue='River Vale'
-        //style={styles.input}
       />      
       <StatusBar style="auto" />
 
     </View>
-
-// <Image source={bcabuslogo}/>     
-
+    </KeyboardAvoidingView>
 
   );
 }
 
-function SummaryScreen({navigation}) {
-  // const [text, onChangeText] = React.useState("Your town...");
-  
-  return (
-    <View style = {styles.container}>
-      <Text style={style.questionTexts}>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
-         
-      <Button
-        title="SendNotifScreen"
-        onPress={() => navigation.navigate('SendNotifScreen')}
-        style={styles.playButton}
-      />
-    </View>
-
-    
-  );
-}
 
 function SetStopScreen({navigation}) {
   const [stop, setStop] = React.useState(null);
@@ -122,39 +96,49 @@ function SetStopScreen({navigation}) {
   };
 
   return (
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={styles.container}>
+    
+      <View style = {styles.questionContainer1}>
+      <Image source={redstop} style={styles.redstop} />
+        <Text style={styles.questionTexts}>Which stop do you wait at?</Text>
+        <TextInput style={styles.inputText}
+          onChangeText={inputHandler}
+          value={stop}
+          placeholder="Your stop..."
+          keyboardType="text"
+          defaultValue='Cleveland & Rockland'
+        />   
+        <StatusBar style="auto" />
+   
+      </View>
+
+    </KeyboardAvoidingView>
+  );
+}
+
+
+function SummaryScreen({navigation}) {
+  // const [text, onChangeText] = React.useState("Your town...");
+  
+  return (
     <View style = {styles.container}>
-      <Text style={styles.questionTexts}>Which stop do you wait at?</Text>
-      <TextInput
-        //style={styles.input}
-        onChangeText={inputHandler}
-        value={stop}
-        placeholder="Your stop..."
-        keyboardType="text"
-      />      
+      <Text style={styles.questionTexts}>Great! We'll give you relevant notifications for Cleveland and Rockland.</Text>
+      <AwesomeButton
+        backgroundColor="#1480a3"
+        borderColor="white"
+        type="primary"
+        onPress={() => navigation.navigate('SendNotifScreen')}
+        style={styles.navigation}
+        >Bus Arrival</AwesomeButton>  
+
     </View>
 
+    
   );
- 
 }
 
-function tSwitch() {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-  return (
-    <ScrollView style={styles.container}>
-      <Switch
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-
-    </ScrollView>
-  )
-
-}
 
 function SendNotifScreen1() {
 
@@ -329,6 +313,10 @@ function App() {
   // let [fontsLoaded] = useFonts({
   //   Inter_900Black,
   // });
+
+  let [fontsLoaded] = useFonts({
+    Baloo2_400Regular,
+  });
 
   return (
     <NavigationContainer>
